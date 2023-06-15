@@ -13,25 +13,6 @@ from pcweb.base_state import State
 from pcweb.route import Route, get_path
 
 
-class CopyToClipboard(pc.Component):
-    """Component to copy text to clipboard."""
-
-    library = "react-copy-to-clipboard"
-
-    tag = "CopyToClipboard"
-
-    # The text to copy when clicked.
-    text: pc.Var[str]
-
-    @classmethod
-    def get_triggers(cls) -> set[str]:
-        return super().get_triggers() | {"on_copy"}
-
-
-# Convenience method to create the compoennt.
-copy_to_clipboard = CopyToClipboard.create
-
-
 @pc.memo
 def code_block(
     code: str,
@@ -453,7 +434,7 @@ def doctext(*text, **props) -> pc.Component:
     Returns:
         The styled paragraph.
     """
-    return pc.box(
+    return pc.text(
         *text,
         margin_bottom="1em",
         font_size=styles.TEXT_FONT_SIZE,
